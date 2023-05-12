@@ -1,6 +1,7 @@
 import {
   ComponentFactoryResolver,
   Directive,
+  Injectable,
   Injector,
   Input,
   NgModuleFactory,
@@ -9,8 +10,8 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 
-@Directive({ selector: '[appHostComponentLoader]' })
-export class HostComponentLoaderDirective implements OnInit {
+@Injectable()
+export class HostComponentLoaderService implements OnInit {
   private _appHostComponentLoader: Promise<any>;
   public get appHostComponentLoader(): Promise<any> {
     return this._appHostComponentLoader;

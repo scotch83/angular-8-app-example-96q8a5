@@ -7,6 +7,7 @@ import { HelloComponent } from './hello.component';
 import { ProxyFiltroModule } from './proxy-filtro/proxy-filtro.module';
 import { RouterModule } from '@angular/router';
 import { ListaModule } from './lista/lista.module';
+import { HostComponentLoaderService } from './app-host.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { ListaModule } from './lista/lista.module';
     BrowserModule,
     FormsModule,
   ],
+  providers:[HostComponentLoaderService],
   declarations: [AppComponent, HelloComponent],
   bootstrap: [AppComponent],
 })
