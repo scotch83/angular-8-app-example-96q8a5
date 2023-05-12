@@ -8,21 +8,26 @@ import { ProxyFiltroModule } from './proxy-filtro/proxy-filtro.module';
 import { RouterModule } from '@angular/router';
 import { ListaModule } from './lista/lista.module';
 import { HostComponentLoaderService } from './app-host.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forRoot([
       {
-        path:'',
-        loadChildren: () => import('./backoffice/backoffice.module').then(m => m.BackofficeModule)
-      }
+        path: '',
+        loadChildren: () =>
+          import('./backoffice/backoffice.module').then(
+            (m) => m.BackofficeModule
+          ),
+      },
     ]),
-    // ProxyFiltroModule,
+    ProxyFiltroModule,
     ListaModule,
     BrowserModule,
     FormsModule,
   ],
-  providers:[HostComponentLoaderService],
+  providers: [HostComponentLoaderService],
   declarations: [AppComponent, HelloComponent],
   bootstrap: [AppComponent],
 })

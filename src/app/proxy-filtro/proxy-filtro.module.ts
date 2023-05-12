@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProxyFiltroComponent } from './proxy-filtro/proxy-filtro.component';
 import { RouterModule } from '@angular/router';
-import { HostComponentLoaderDirective } from '../app-host.directive';
+import { PippoFiltroComponent } from '../pippo-filtro/pippo-filtro/pippo-filtro.component';
 
 @NgModule({
-  declarations: [ProxyFiltroComponent, HostComponentLoaderDirective],
+  declarations: [ProxyFiltroComponent, PippoFiltroComponent],
+  entryComponents: [PippoFiltroComponent],
   exports: [ProxyFiltroComponent],
   imports: [
     CommonModule,

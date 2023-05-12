@@ -1,5 +1,13 @@
-import { Component, OnInit, Type, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnInit,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { HostComponentLoaderService } from '../../app-host.service';
 
 @Component({
   selector: 'app-proxy-filtro',
@@ -7,7 +15,14 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrls: ['./proxy-filtro.component.css'],
 })
 export class ProxyFiltroComponent implements OnInit {
-  ngOnInit() {}
+  constructor(
+    private vcref: ViewContainerRef,
+    private cfr: ComponentFactoryResolver,
+    private appHostService: HostComponentLoaderService
+  ) {}
+  ngOnInit() {
+    this.appHostService.loadComponent(this.vcref, this.componentImport())
+  }
   componentImport(): Promise<any> {
     return import('../../pippo-filtro/pippo-filtro/pippo-filtro.component');
   }

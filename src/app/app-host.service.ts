@@ -21,19 +21,15 @@ export class HostComponentLoaderService implements OnInit {
     this._appHostComponentLoader = value;
   }
 
-  constructor(
-    private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
-  ) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  async ngOnInit(): Promise<void> {
-    if (this._appHostComponentLoader)
-      await this.loadComponent(this._appHostComponentLoader);
-  }
+  async ngOnInit(): Promise<void> {}
 
-  async loadComponent(component: Promise<any>) {
+  async loadComponent(
+    viewContainerRef: ViewContainerRef,
+    component: Promise<any>
+  ) {
     console.log(component);
-    this.viewContainerRef.clear();
     try {
       const lazyLoaded = await component;
       const keys = Object.keys(lazyLoaded);
@@ -44,7 +40,6 @@ export class HostComponentLoaderService implements OnInit {
             this.componentFactoryResolver.resolveComponentFactory(
               lazyLoaded[key]
             );
-          const viewContainerRef = this.viewContainerRef;
           viewContainerRef.clear();
           return viewContainerRef.createComponent(componentFactory);
         }
